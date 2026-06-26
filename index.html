@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMBRA - Grimorium of Morpheus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Share+Tech+Mono&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/logo_umbra_rojo.png">
+    
+    <style>
+        /* --- VARIABLES DE DISEÑO --- */
+        :root {
+            --bg-dark: #07040d;
+            --purple-flow: linear-gradient(180deg, #180933 0%, #0c051a 50%, #07040d 100%);
+            --text-white: #ffffff;
+            --text-muted: #a3a3a3;
+            --accent-yellow: #facc15;
+            --font-display: 'Orbitron', sans-serif;
+            --font-mono: 'Share Tech Mono', monospace;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* --- RESET GENERAL --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            background-color: rgba(11, 6, 21, 0.95);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #1a103c;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .menu-burger {
+            font-size: 22px;
+            cursor: pointer;
+            color: var(--text-white);
+        }
+
+        .cat-logo {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #38bdf8;
+        }
+
+        /* --- SECCIÓN 1: VIDEO PROMOCIONAL Y VOTACIÓN --- */
+        .promo-section {
+            background: var(--purple-flow);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .video-container {
+            max-width: 880px;
+            margin: 0 auto 35px auto;
+            background: #000;
+            border: 4px solid #231244;
+            border-radius: 4px;
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.25);
+            position: relative;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .vote-button {
+            background-color: #0b0712;
+            color: var(--text-white);
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 16px;
+            padding: 16px 45px;
+            border: 2px solid var(--text-white);
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .vote-button:hover {
+            background-color: var(--text-white);
+            color: #0b0712;
+            box-shadow: 0 0 20px rgba(255,255,255,0.5);
+        }
+
+        /* --- SECCIÓN 2: UN POCO DE UMBRA --- */
+        .umbra-section {
+            background: var(--purple-flow);
+            padding: 70px 0;
+            text-align: center;
+        }
+
+        .umbra-section h2, .prota-section h2 {
+            font-family: var(--font-display);
+            font-size: 38px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .umbra-section p {
+            color: #d1d5db;
+            max-width: 750px;
+            margin: 0 auto 45px auto;
+            font-size: 14px;
+            font-family: var(--font-mono);
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+
+        .gallery-box {
+            aspect-ratio: 3 / 4;
+            background-color: #130a24;
+            border: 1px solid #2d1854;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .gallery-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- SECCIÓN 3: UN POCO DEL PROTA --- */
+        .prota-section {
+            background-color: #07040d;
+            padding: 80px 0;
+        }
+
+        .prota-section h2 {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .prota-grid {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .prota-img-box {
+            flex: 1;
+            aspect-ratio: 4 / 3;
+            background-color: #130a24;
+            border: 1px solid #331b5d;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prota-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blue-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: #2563eb;
+            color: white;
+            font-size: 11px;
+            padding: 1px 7px;
+            border-radius: 2px;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .prota-desc {
+            flex: 1;
+            font-family: var(--font-mono);
+            font-size: 15px;
+            color: #d1d5db;
+        }
+
+        .prota-desc p {
+            margin-bottom: 25px;
+        }
+
+        .prota-desc h3 {
+            color: var(--text-white);
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* --- SECCIÓN 4: EXPLORA OTROS MUNDOS --- */
+        .explore-section {
+            background: var(--purple-flow);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .explore-section h2 {
+            font-family: var(--font-sans);
+            font-weight: 700;
+            font-size: 36px;
+            text-transform: uppercase;
+        }
+
+        .explore-section p {
+            color: #e5e7eb;
+            font-size: 14px;
+            margin-bottom: 50px;
+        }
+
+        .brands-layout {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 25px;
+            align-items: center;
+        }
+
+        .brand-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .brand-box a {
+            display: block;
+            width: 100%;
+            transition: transform 0.2s ease;
+        }
+
+        .brand-box a:hover {
+            transform: scale(1.08);
+        }
+
+        .brand-box img {
+            max-width: 100%;
+            max-height: 75px;
+            object-fit: contain;
+            filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.5));
+        }
+
+        /* --- STYLES EXTRA: MOSCA WATERMARK --- */
+        .mosca-watermark {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            opacity: 0.3;
+            z-index: 9999;
+            pointer-events: auto;
+            transition: opacity 0.3s ease;
+        }
+        .mosca-watermark:hover {
+            opacity: 0.8;
+        }
+        .mosca-watermark img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 960px) {
+            .gallery-container, .brands-layout { grid-template-columns: repeat(3, 1fr); }
+            .prota-grid { flex-direction: column; }
+            .footer-main { flex-direction: column; gap: 35px; text-align: center; align-items: center; }
+            .f-right a { margin: 0 10px; }
+        }
+        @media (max-width: 640px) {
+            .gallery-container, .brands-layout { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-left">
+            <div class="menu-burger">&#9776;</div>
+            <img src="img/logo_umbra.png" class="cat-logo" alt="Logo">
+        </div>
+        <div class="nav-links">
+            <a href="#" class="active">Inicio</a>
+            <a href="#">Biblia de Arte</a>
+        </div>
+    </nav>
+
+    <section class="promo-section">
+        <div class="container">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/8CsDNNx-3tc" allowfullscreen></iframe>
+            </div>
+            <button class="vote-button" onclick="window.location.href='agradecimientos.html'">Votar Proyecto</button>
+        </div>
+    </section>
+
+    <section class="umbra-section">
+        <div class="container">
+            <h2>Un poco de UMBRA</h2>
+            <p>Acá podes ver un poco del concepto de UMBRA. Además podes ir a la sección de "Biblia de Arte" donde tenes más lore del proyecto y concept arts.</p>
+            
+            <div class="gallery-container">
+                <div class="gallery-box"><img src="img/Mesa de trabajo 1 copia 2-1.jpg" alt="Concept 1"></div>
+                <div class="gallery-box"><img src="img/Mesa de trabajo 1 copia.jpg" alt="Concept 2"></div>
+                <div class="gallery-box"><img src="img/Mesa de trabajo 1 copia 2.jpg" alt="Concept 3"></div>
+                <div class="gallery-box"><img src="img/Mesa de trabajo 1 copia 3-2.jpg" alt="Concept 4"></div>
+                <div class="gallery-box"><img src="img/Mesa de trabajo 1 copia 3.jpg" alt="Concept 5"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="prota-section">
+        <div class="container">
+            <h2>Un poco del prota</h2>
+            <div class="prota-grid">
+                <div class="prota-img-box">
+                    <img src="img/Mesa de trabajo 1 copia 3-1.jpg" alt="Morpheus">
+                </div>
+                <div class="prota-desc">
+                    <p>Morpheus es un mago que al igual que el Doom Slayer, tiene unas ganas de destruir unos cuantos bichos, que en este caso son sus captores, quienes además eran sus compañeros y profesores ¡en una escuela de magia malévola!</p>
+                    <h3>¿Super lindo no?</h3>
+                    <p>Morpheus es el elegido de la historia, el cual puede usar varios grimorios para lancer todo tipo de hechizos, y sí, es el mago más groso de UMBRA.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="explore-section">
+        <div class="container">
+            <h2>EXPLORA OTROS MUNDOS</h2>
+            <p>Dale no seas cagón, estos juegos están buenísimos</p>
+            
+            <div class="brands-layout">
+                <div class="brand-box">
+                    <a href="https://tallervideojuego.wixsite.com/sweetescape" target="_blank" rel="noopener noreferrer">
+                        <img src="img/Logos/LogoSweetEscape.png" alt="Sweet Escape">
+                    </a>
+                </div>
+                
+                <div class="brand-box">
+                    <a href="https://terrabusiagustina-bit.github.io/Out-of-the-Bounds/" target="_blank" rel="noopener noreferrer">
+                        <img src="img/Logos/OutOfTheBounds.png" alt="Out Of The Bounds">
+                    </a>
+                </div>
+                
+                <div class="brand-box">
+                    <a href="https://garciaguevarakiara.wixsite.com/intrusion" target="_blank" rel="noopener noreferrer">
+                        <img src="img/Logos/Intrusiขn.png" alt="Intrusión">
+                    </a>
+                </div>
+                
+                <div class="brand-box">
+                    <a href="https://amyranmy.github.io/Echoes-/" target="_blank" rel="noopener noreferrer">
+                        <img src="img/Logos/IMG_0926.PNG" alt="Echoes">
+                    </a>
+                </div>
+                
+                <div class="brand-box">
+                    <a href="https://sofiacerizola.wixsite.com/to-space-and-back" target="_blank" rel="noopener noreferrer">
+                        <img src="img/Logos/logo-TSAB.png" alt="To Space and Back">
+                    </a>
+                </div>
+                
+                <div class="brand-box">
+                    <a href="https://sakaearts.github.io/beecoming/" target="_blank" rel="noopener noreferrer">
+                        <img src="img/Logos/Logo Bee.png" alt="Bee Coming">
+                    </a>
+                </div>
+                
+                <div class="brand-box">
+                    <a href="https://bdylan3.wixsite.com/website" target="_blank" rel="noopener noreferrer">
+                        <img src="img/Logos/porelbarriologo.png" alt="Patocalipsis">
+                    </a>
+                </div>
+                
+                <div class="brand-box">
+                    <a href="https://damicogiuliano.wixsite.com/rockndash" target="_blank" rel="noopener noreferrer">
+                        <img src="img/Logos/rock n dash LOGO PNG.png" alt="Glitch Alley">
+                    </a>
+                </div>
+                
+                <div class="brand-box">
+                    <a href="https://ejamardotraverso.wixsite.com/merienda-marina" target="_blank" rel="noopener noreferrer">
+                        <img src="img/Logos/logo.png" alt="Merienda Marina">
+                    </a>
+                </div>
+                
+                <div class="brand-box">
+                    <a href="https://lucilamunizashkar-glitch.github.io/Cristalia/" target="_blank" rel="noopener noreferrer">
+                        <img src="img/Logos/cristalia.logo.png" alt="Cristalia">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+        </div>
+    </section>
+
+    <footer style="background-color: #030205; padding: 50px 0 30px 0; font-size: 14px; border-top: 1px solid #120b21; width: 100%;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <div class="footer-main" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; width: 100%;">
+                
+                <div class="f-left" style="flex: 1; text-align: left;">
+                    <h4 style="font-family: var(--font-display); font-size: 24px; letter-spacing: 3px; color: #ffffff;">UMBRA</h4>
+                    <p style="color: var(--text-muted); font-size: 11px; letter-spacing: 1.5px; margin-top: 4px;">GRIMORIUM OF MORPHEUS</p>
+                </div>
+                
+                <div class="f-center" style="flex: 1; text-align: center;">
+                    <h5 style="font-size: 15px; font-weight: 600; color: #ffffff;">Arte y Diseño Digital</h5>
+                    <p style="color: #38bdf8; font-size: 13px; margin-top: 2px;">Universidad del Salvador</p>
+                </div>
+                
+                <div class="f-right" style="flex: 1; text-align: right;">
+                    <a href="#" target="_blank" style="color: #ffffff; text-decoration: none; margin-left: 20px; font-weight: 500; transition: color 0.2s;">Instagram</a>
+                    <a href="#" target="_blank" style="color: #ffffff; text-decoration: none; margin-left: 20px; font-weight: 500; transition: color 0.2s;">YouTube</a>
+                    <a href="#" target="_blank" style="color: #ffffff; text-decoration: none; margin-left: 20px; font-weight: 500; transition: color 0.2s;">TikTok</a>
+                </div>
+                
+            </div>
+            
+            <div class="footer-credits" style="text-align: center; color: #4b5563; font-size: 12px; border-top: 1px solid #110a1f; padding-top: 25px; width: 100%;">
+                &copy; 2026 UMBRA. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <div class="mosca-watermark">
+        <img src="img/logo_umbra.png" alt="Mosca Umbra">
+    </div>
+
+</body>
+</html>
